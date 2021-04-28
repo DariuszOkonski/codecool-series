@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="card">
+
+        <h2>Most rated</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Year</th>
+                    <th>Overview</th>
+                    <th>Runtime</th>
+                    <th>Trailer</th>
+                    <th>Homepage</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for el in most_rated %}
+                    <tr>
+                        <td>{{ el['id'] }}</td>
+                        <td>{{ el['title'] }}</td>
+                        <td>{{ el['year'] }}</td>
+                        <td>{{ el['overview'][:100] }}...</td>
+                        <td>{{ el['runtime'] }}</td>
+                        <td>
+                            {% if el['trailer'] == None %}
+                                None
+                            {% else %}
+                                <a href="{{ el['trailer'] }}">trailer</a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if el['homepage'] == None %}
+                                None
+                            {% else %}
+                                <a href="{{ el['homepage'] }}">homepage</a>
+                            {% endif %}
+                        </td>
+                        <td>{{ el['rating'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <ul>
+        </ul>
+
+
+    </div>
+{% endblock %}
