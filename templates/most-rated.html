@@ -11,9 +11,9 @@
 {#                    <th>Id</th>#}
                     <th>Title</th>
                     <th>Year</th>
-                    <th>Overview</th>
                     <th>Runtime</th>
                     <th>Rating</th>
+                    <th>Genres</th>
                     <th>Trailer</th>
                     <th>Homepage</th>
                 </tr>
@@ -21,7 +21,6 @@
             <tbody>
                 {% for el in most_rated %}
                     <tr>
-                        <td>{{ el['id'] }}</td>
                         <td>
                             <a href="/show/{{ el['id'] }}">
                                 {{ el['title'] }}
@@ -29,7 +28,7 @@
                         </td>
                         <td>{{ el['year'] }}</td>
 {#                        <td>{{ el['overview'][:100] }}...</td>#}
-{#                        <td>{{ el['runtime'] }}</td>#}
+                        <td>{{ el['runtime'] }}</td>
                         <td>
                             {{ "%.2f"|format(el['rating']|float) }}
                         </td>
