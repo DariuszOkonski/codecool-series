@@ -8,39 +8,46 @@
         <table>
             <thead>
                 <tr>
-                    <th>Id</th>
+{#                    <th>Id</th>#}
                     <th>Title</th>
                     <th>Year</th>
                     <th>Overview</th>
                     <th>Runtime</th>
+                    <th>Rating</th>
                     <th>Trailer</th>
                     <th>Homepage</th>
-                    <th>Rating</th>
                 </tr>
             </thead>
             <tbody>
                 {% for el in most_rated %}
                     <tr>
                         <td>{{ el['id'] }}</td>
-                        <td>{{ el['title'] }}</td>
+                        <td>
+                            <a href="/show/{{ el['id'] }}">
+                                {{ el['title'] }}
+                            </a>
+                        </td>
                         <td>{{ el['year'] }}</td>
-                        <td>{{ el['overview'][:100] }}...</td>
-                        <td>{{ el['runtime'] }}</td>
+{#                        <td>{{ el['overview'][:100] }}...</td>#}
+{#                        <td>{{ el['runtime'] }}</td>#}
+                        <td>
+                            {{ "%.2f"|format(el['rating']|float) }}
+                        </td>
+                        <td>{{ el['genres'] }}</td>
                         <td>
                             {% if el['trailer'] == None %}
-                                None
+                                No URL
                             {% else %}
                                 <a href="{{ el['trailer'] }}">trailer</a>
                             {% endif %}
                         </td>
                         <td>
                             {% if el['homepage'] == None %}
-                                None
+                                No URL
                             {% else %}
                                 <a href="{{ el['homepage'] }}">homepage</a>
                             {% endif %}
                         </td>
-                        <td>{{ el['rating'] }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
